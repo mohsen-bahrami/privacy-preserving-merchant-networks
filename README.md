@@ -79,6 +79,29 @@ python run_experiment.py -O results/ -E merchant_experiment -L labels/labels_x.c
 ```
 ---
 
+## Replication Flow (pre-processed Data)
+You do not need access to raw merchant transaction records to test or evaluate the machine learning architectures. The files located within `data/pre-processed/` bypass the spatial-temporal parsing steps and allow immediate execution of the evaluation suite:
+
+To evaluate the predictive power of these network features against traditional financial indicators, execute the experiment suite using the provided scripts:
+
+```bash
+# Evaluate models using ONLY demographic proxies
+python run_experiment.py -O results/ -E demographics_baseline -L data/pre-processed/label_indicators.csv -F data/pre-processed/demographics_x.csv
+
+# Evaluate models using ONLY revenue baseline metrics
+python run_experiment.py -O results/ -E revenue_baseline -L data/pre-processed/label_indicators.csv -F data/pre-processed/revenue_x.csv
+
+# Evaluate models using privacy-safe structural network features
+python run_experiment.py -O results/ -E network_features_only -L data/pre-processed/label_indicators.csv -F data/pre-processed/filtered_network_features_weight_x.csv
+
+# Evaluate the fully integrated multi-modal model (Demographics + Revenue + Network Topologies)
+python run_experiment.py -O results/ -E full_multimodal_model -L data/pre-processed/label_indicators.csv -F data/pre-processed/demographics_x.csv data/pre-processed/revenue_x.csv data/pre-processed/filtered_network_features_weight_x.csv
+```
+
+For a high-level walkthrough of model accuracy curves, ROC-AUC comparisons, and feature importance interpretations, reference the master `src/eval.ipynb` file.
+
+---
+
 ## Performance Benchmarks & Key Insights
 
 - **Parity on Privacy:** Classification models trained solely on anonymous structural features match the predictive accuracy (AUC/F1) of traditional baseline models built using highly sensitive revenue streams.
