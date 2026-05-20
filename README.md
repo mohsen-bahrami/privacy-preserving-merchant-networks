@@ -62,19 +62,19 @@ This project provides a functional solution by shifting focus from individual tr
 The data engineering and validation execution sequences can be run sequentially based on definitions stored inside config.yaml:
 
 ```bash
-# 1. Apply geospatial bounding-box filter
-python src/spatial_filter.py
+# 1. Apply geospatial bounding-box filter over raw checkout streams
+python spatial_filter.py
 
-# 2. Filter records based on operational thresholds
-python src/filter_records.py --bank x
+# 2. Prune records based on operational thresholds and target MCC codes
+python filter_records.py --bank x
 
-# 3. Construct the projected merchant co-visitation graph
-python src/construct_network.py --bank x
+# 3. Construct the projected user-bridge merchant co-visitation graph
+python construct_network.py --bank x
 
-# 4. Extract topological network features and revenue targets
-python src/generate_features_labels.py --bank x --weight weight
+# 4. Extract topological network features (centralities, entropy) and generate performance targets
+python generate_features_labels.py --bank x --weight weight
 
-# 5. Execute predictive modeling experiments
+# 5. Execute cross-validated machine learning predictive modeling experiments
 python run_experiment.py -O results/ -E merchant_experiment -L labels/labels_x.csv -F features/filtered_network_features_weight_x.csv
 ```
 ---
