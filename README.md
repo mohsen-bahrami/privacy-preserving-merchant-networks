@@ -6,7 +6,7 @@
 
 An end-to-end network science and machine learning feature engineering pipeline that transforms raw credit card transaction streams into privacy-preserving structural topologies to evaluate small and medium enterprise (SME) performance.
 
-Published in **Nature Scientific Reports**, this framework implements consumer-bridge network transformations to extract alternative risk signals via graph centralities. This allows financial institutions to evaluate commercial credit health without requiring merchants to expose highly sensitive revenue footprints or proprietary tracking logs.
+Published in [**Nature Scientific Reports**](https://www.nature.com/articles/s41598-023-36624-0), this framework implements consumer-bridge network transformations to extract alternative risk signals via graph centralities. This allows financial institutions to evaluate commercial credit health without requiring merchants to expose highly sensitive revenue footprints or proprietary tracking logs.
 
 ---
 
@@ -128,5 +128,7 @@ If you utilize this network modeling approach, processing logic, or alternative 
 ```
 
 --- 
+
+[**Research Paper**](https://www.nature.com/articles/s41598-023-36624-0)
 
 Developed under the research umbrellas of MIT Connection Science and the Institute for Data, Systems, and Society (IDSS). For integration questions, reach out to the corresponding author [Mohsen Bahrami](mailto:bahrami@mit.edu).
