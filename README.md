@@ -57,6 +57,28 @@ This project provides a functional solution by shifting focus from individual tr
 
 ---
 
+## Running the End-to-End Pipeline
+
+The data engineering and validation execution sequences can be run sequentially based on definitions stored inside config.yaml:
+
+```bash
+# 1. Apply geospatial bounding-box filter
+python src/spatial_filter.py
+
+# 2. Filter records based on operational thresholds
+python src/filter_records.py --bank x
+
+# 3. Construct the projected merchant co-visitation graph
+python src/construct_network.py --bank x
+
+# 4. Extract topological network features and revenue targets
+python src/generate_features_labels.py --bank x --weight weight
+
+# 5. Execute predictive modeling experiments
+python run_experiment.py -O results/ -E merchant_experiment -L labels/labels_x.csv -F features/filtered_network_features_weight_x.csv
+```
+---
+
 ## Performance Benchmarks & Key Insights
 
 - **Parity on Privacy:** Classification models trained solely on anonymous structural features match the predictive accuracy (AUC/F1) of traditional baseline models built using highly sensitive revenue streams.
